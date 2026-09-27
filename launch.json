@@ -1,0 +1,26 @@
+{
+  "kind": "univ4_hook",
+  "hook": {
+    "contract": "GeomeanOracleHook",
+    "constructorArgs": [
+      "0xE03A1074c86CFeDd5C142C4F04F1a1536e203543"
+    ],
+    "permissions": [
+      "afterInitialize",
+      "beforeSwap"
+    ]
+  },
+  "token": {
+    "contract": "Geomean",
+    "name": "Geomean",
+    "symbol": "GEOM",
+    "decimals": 18
+  },
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "78588986356927097284479352776873"
+  },
+  "notes": "GeomeanOracleHook extends OpenZeppelin's Panoptic BaseOracleHook. Its sole constructor argument is the approved Sepolia PoolManager; the base truncation limit is the source literal 9116. Only afterInitialize and beforeSwap are enabled (address bits 0x1080 under mask 0x3fff), with constructor address validation. PoolManager-only callbacks initialize per-PoolId history and record pre-swap standard and truncated tick cumulatives at most once per timestamp. beforeSwap returns zero deltas and no fee override. observe exposes both series; consult returns floor-rounded mean ticks and rejects zero windows or unavailable history. The ring starts at one slot and anyone may request growth. The pool orders native ETH as currency0 and GEOM as currency1. initialPrice is decimal sqrtPriceX96 from TickMath.getSqrtPriceAtTick(138000), matching the accepted launch harness and its GEOM-only seed. Geomean has no constructor arguments."
+}
